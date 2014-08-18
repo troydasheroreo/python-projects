@@ -8,7 +8,8 @@ def ask_color():
 
 def die():
     print("Thou art cast into the Gorge of Eternal Peril")
-    print("You are dead")
+    print("You died")
+    print("Lol")
 
 def live():
     print("Fine. Off you go then")
