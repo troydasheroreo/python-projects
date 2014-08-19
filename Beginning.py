@@ -9,7 +9,7 @@ while True:
     elif favorite == "mint chocolate chip":
         print("Me too!")
         break
-    else: print("Looks like I picked the wrong week to quit sniffing glue.")
+    else: print("Lol nice try")
 
 
 
