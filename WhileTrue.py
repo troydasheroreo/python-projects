@@ -4,7 +4,7 @@ while True:
     favorite = input("What is your favorite Ice Cream flavor?").strip().lower()
 
     if favorite == "chocolate" or favorite == "vanilla":
-        print("SOoOOOoOOOOooooOooOOO original")
+        print("SOoOOOoOOOO original")
         break
     elif favorite == "mint chocolate chip":
         print("Me too!")
