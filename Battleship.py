@@ -1,4 +1,6 @@
-print('Welcome to Battleship!')
+from termcolor import colored
+
+print colored('Welcome to ', 'red'), colored('Battleship!', 'blue')
 
 w = '~'
 hit = '*'
