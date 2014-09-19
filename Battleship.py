@@ -1,6 +1,48 @@
-from termcolor import colored
+class Ship():
+    size = None
+    char = None
 
-print colored('Welcome to ', 'red'), colored('Battleship!', 'blue')
+    def __init__(self):
+        self.row = 0
+        self.col = 0
+        self.direction = None
+
+class Carrier(Ship):
+    size = 5
+    char = 'C'
+
+class Battleship(Ship):
+    size = 4
+    char = 'B'
+
+class Destroyer(Ship):
+    size = 3
+    char = 'D'
+
+class Submarine(Ship):
+    size = 3
+    char = 'S'
+
+class PatrolBoat(Ship):
+    size = 2
+    char = 'P'
+
+
+my_carrier = Carrier()
+my_battleship = Battleship()
+my_destroyer = Destroyer()
+my_submarine = Submarine()
+my_patrolboat = PatrolBoat()
+
+x_carrier = Carrier()
+x_battleship = Battleship()
+x_destroyer = Destroyer()
+x_submarine = Submarine()
+x_patrolboat = PatrolBoat()
+
+
+
+print("Welcome to Battleship!")
 
 w = '~'
 hit = '*'
@@ -34,20 +76,35 @@ def show_grid():
 
 
 def shoot():
-    
-    target_row = input("What row do you wish to attack? > ").strip().lower()
-    target_col = input("What column do you wish to attack? > ").strip()
-
-    row_num = {'a' :1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,'j':10}
-
-
-    row = row_num[target_row]
-    col= int(target_col) + 1
+    (row, col) = ask_coord()
     grid [row] [col] = hit
 
-while True:
+def ask_coord():
+    row_num = {'a' :1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,'j':10}
+
+    row = input("What row do you wish to place? >")
+    col = input("What column do you wish to place? >")
+    row = row_num[row]
+    col = int(col) + 1
+    return (row, col)
+
+
     
+
+def play():
+    while True:
+    
+        show_grid()
+        shoot()
+
+for ship in [my_carrier,my_battleship,my_destroyer,my_submarine,my_patrolboat]:
+    print("{} start coord:".format(ship. __class__.__name__)) 
+    (ship.row,ship.col) = ask_coord()
+    print("Direction? [h|v] ")
+    ship.direction = input('> ').lower().strip()
+
+    if ship.direction  == 'h':
+        for col in range(ship.size):
+            grid[ship.row] [ship.col + col] = ship.char
+
     show_grid()
-    shoot()
-
-
