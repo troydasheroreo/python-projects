@@ -106,5 +106,9 @@ for ship in [my_carrier,my_battleship,my_destroyer,my_submarine,my_patrolboat]:
     if ship.direction  == 'h':
         for col in range(ship.size):
             grid[ship.row] [ship.col + col] = ship.char
+            
+    if ship.direction == 'v':
+        for row in range(ship.size):
+            grid[ship.row] [ship.col + col] = ship.char
 
     show_grid()
