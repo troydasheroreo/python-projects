@@ -27,84 +27,104 @@ class PatrolBoat(Ship):
     size = 2
     char = 'P'
 
-
-my_carrier = Carrier()
-my_battleship = Battleship()
-my_destroyer = Destroyer()
-my_submarine = Submarine()
-my_patrolboat = PatrolBoat()
-
-x_carrier = Carrier()
-x_battleship = Battleship()
-x_destroyer = Destroyer()
-x_submarine = Submarine()
-x_patrolboat = PatrolBoat()
-
-
-
-print("Welcome to Battleship!")
-
-w = '~'
-hit = '*'
-
-grid = [
-[' ',0,1,2,3,4,5,6,7,8,9],
-['A',w,w,w,w,w,w,w,w,w,w],
-['B',w,w,w,w,w,w,w,w,w,w],
-['C',w,w,w,w,w,w,w,w,w,w],
-['D',w,w,w,w,w,w,w,w,w,w],
-['E',w,w,w,w,w,w,w,w,w,w],
-['F',w,w,w,w,w,w,w,w,w,w],
-['G',w,w,w,w,w,w,w,w,w,w],
-['H',w,w,w,w,w,w,w,w,w,w],
-['I',w,w,w,w,w,w,w,w,w,w],
-['J',w,w,w,w,w,w,w,w,w,w],
-    ]
+class Player():
+    def __init__(self):
+        self.carrier = Carrier()
+        self.battleship = Battleship()
+        self.destroyer = Destroyer()
+        self.submarine = Submarine()
+        self.patrolboat = PatrolBoat()
+        self.ships = [
+            self.carrier,
+            self.battleship,
+            self.destroyer,
+            self.submarine,
+            self.patrolboat
+        ]
+        self.ships_grid = Grid()
+        self.shots_grid = Grid()
 
 
 
 
 
-def show_grid():
-    for row in grid:
-        for col in row:
-            print(col, end=' ')
-        print()
+class Grid():
+    row_num = {'a' :1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9, 'j':10}
+    def __init__(self):
         
-
-
-
-
-def shoot():
-    (row, col) = ask_coord()
-    grid [row] [col] = hit
-
-def ask_coord():
-    row_num = {'a' :1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,'j':10}
-
-    row = input("What row do you wish to place? >")
-    col = input("What column do you wish to place? >")
-    row = row_num[row]
-    col = int(col) + 1
-    return (row, col)
-
-
+            w = '~'
+            self.rows =[
+            [' ',0,1,2,3,4,5,6,7,8,9],
+            ['A',w,w,w,w,w,w,w,w,w,w],
+            ['B',w,w,w,w,w,w,w,w,w,w],
+            ['C',w,w,w,w,w,w,w,w,w,w],
+            ['D',w,w,w,w,w,w,w,w,w,w],
+            ['E',w,w,w,w,w,w,w,w,w,w],
+            ['F',w,w,w,w,w,w,w,w,w,w],
+            ['G',w,w,w,w,w,w,w,w,w,w],
+            ['H',w,w,w,w,w,w,w,w,w,w],
+            ['I',w,w,w,w,w,w,w,w,w,w],
+            ['J',w,w,w,w,w,w,w,w,w,w],
+                ]
     
 
-def play():
-    while True:
+class Controller():
+
+    def __init__(self):
+        self.player = Player()
+        self.computer = Player()
     
-        show_grid()
-        shoot()
+    def greet(self):
+        print('Prepare for battle!')
 
-for ship in [my_carrier,my_battleship,my_destroyer,my_submarine,my_patrolboat]:
-    print("{} start coord:".format(ship. __class__.__name__)) 
-    (ship.row,ship.col) = ask_coord()
-    print("Direction? [h|v] ")
-    ship.direction = input('> ').lower().strip()
+    def ask_coord(self):
+   
+        row = input("row? >").strip().lower()
+        col = input("column? >").strip()
+        row = Grid.row_num[row]
+        col = int(col) + 1
+        return (row, col)
 
-    if ship.direction  == 'h':
-        for col in range(ship.size):
-            grid[ship.row] [ship.col + col] = ship.char
+    def shoot(self):
+        (row, col) = self.ask_coord()
+        self.computer.ships_grid.rows[row][col] = '*'
+        self.player.shots_grid.rows[row][col] = '*'
 
-    show_grid()
+    def play(self):
+        while True:
+            self.print_player_grids(self.player)
+            self.shoot()
+
+    def print_player_grids(self, player):
+        print('     -~-SHIPS-~-             -~-SHOTS-~-')
+        for row_num in range(10):
+            for col in player.ships_grid.rows[row_num]:
+                print(col, end =' ')
+            print(' ', end=' ')
+            for col in player.shots_grid.rows[row_num]:
+                print(col, end =' ')
+            print()
+        
+        
+         
+
+    
+Controller().play()
+
+
+##
+##for ship in [my_carrier,my_battleship,my_destroyer,my_submarine,my_patrolboat]:
+##    print("{} start coord:".format(ship. __class__.__name__)) 
+##    (ship.row,ship.col) = ask_coord()
+##    print("Direction? [h|v] ")
+##    ship.direction = input('> ').lower().strip()
+##
+##    if ship.direction  == 'h':
+##        for col in range(ship.size):
+##            grid[ship.row] [ship.col + col] = ship.char
+##
+##    show_grid()
+
+
+
+
