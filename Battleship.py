@@ -49,6 +49,8 @@ class Player():
 
 
 class Grid():
+   
+    
     row_num = {'a' :1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9, 'j':10}
     def __init__(self):
         
@@ -86,9 +88,10 @@ class Controller():
         return (row, col)
 
     def shoot(self):
+        warn = '\u26A0'
         (row, col) = self.ask_coord()
-        self.computer.ships_grid.rows[row][col] = '*'
-        self.player.shots_grid.rows[row][col] = '*'
+        self.computer.ships_grid.rows[row][col] = warn
+        self.player.shots_grid.rows[row][col] = warn
 
     def play(self):
         while True:
@@ -96,7 +99,28 @@ class Controller():
             self.shoot()
 
     def print_player_grids(self, player):
-        print('     -~-SHIPS-~-             -~-SHOTS-~-')
+        
+        ul = '\u250F'
+        ur = '\u2513'
+        ll = '\u2517'
+        lr = '\u251B'
+        h = '\u2501'
+        v = '\u2503'
+        uhv = '\u253B'
+        lhv = '\u253B'
+        star = '\u269D'
+        pent = '\u26E4'
+        com = '\u262D'
+        app = '\u2776'
+        
+        
+        
+        
+        
+            
+        print(pent + h * 5 + com + h * 6 + pent + h * 6 + com + h * 5 + pent)
+        print('      -~-SHIPS-~-',
+              '            -~-SHOTS-~-           ')
         for row_num in range(10):
             for col in player.ships_grid.rows[row_num]:
                 print(col, end =' ')
@@ -104,6 +128,8 @@ class Controller():
             for col in player.shots_grid.rows[row_num]:
                 print(col, end =' ')
             print()
+
+        print(pent + h * 5 + com + h * 6 + pent + h * 6 + com + h * 6 + pent)
         
         
          
@@ -127,14 +153,13 @@ Controller().play()
 
 
 
-<<<<<<< HEAD
-=======
-    if ship.direction  == 'h':
-        for col in range(ship.size):
-            grid[ship.row] [ship.col + col] = ship.char
+
+if ship.direction  == 'h':
+    for col in range(ship.size):
+        grid[ship.row] [ship.col + col] = ship.char
             
-    if ship.direction == 'v':
-        for row in range(ship.size):
-            grid[ship.row] [ship.col + col] = ship.char
->>>>>>> origin/master
+if ship.direction == 'v':
+    for row in range(ship.size):
+        grid[ship.row] [ship.col + col] = ship.char
+
 
