@@ -154,6 +154,7 @@ Controller().play()
 
 
 
+<<<<<<< HEAD
 if ship.direction  == 'h':
     for col in range(ship.size):
         grid[ship.row] [ship.col + col] = ship.char
@@ -161,5 +162,14 @@ if ship.direction  == 'h':
 if ship.direction == 'v':
     for row in range(ship.size):
         grid[ship.row] [ship.col + col] = ship.char
+=======
+    if ship.direction  == 'h':
+        for col in range(ship.size):
+            grid[ship.row] [ship.col + col] = ship.char
+            
+    if ship.direction == 'v':
+        for row in range(ship.size):
+            grid[ship.row] [ship.col + col] = ship.char
+>>>>>>> origin/master
 
 
